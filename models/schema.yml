@@ -38,6 +38,9 @@ sources:
         columns:
           - name: orders_id
             description: "Order identifier (matches sales table)."
+            tests:
+              - unique
+              - not_null
           - name: shipping_fee
             description: "Standard shipping fee."
           - name: logCost
