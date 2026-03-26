@@ -6,7 +6,7 @@ sources:
     description: "Main source for raw data hosted on BigQuery."
     tables:
       - name: products
-        identifier: raw_gz_products
+        identifier: raw_gz_product
         description: "Table containing product information."
         columns:
           - name: products_id
@@ -40,8 +40,6 @@ sources:
             description: "Order identifier (matches sales table)."
           - name: shipping_fee
             description: "Standard shipping fee."
-          - name: shipping_fee_1
-            description: "Alternative or additional shipping fee."
           - name: logCost
             description: "Logistics operation cost."
           - name: ship_cost
