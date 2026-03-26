@@ -20,11 +20,6 @@ sources:
       - name: sales
         identifier: raw_gz_sales
         description: "Table containing detailed sales transaction records."
-        loaded_at_field: "CAST(date_date AS TIMESTAMP)"
-        freshness:
-          warn_after:
-            count: 90
-            period: day
         columns:
           - name: date_date
             description: "Date when the transaction occurred."
