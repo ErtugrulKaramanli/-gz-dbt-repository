@@ -16,7 +16,7 @@ renamed as (
         revenue,
         quantity
 
-    from sources
+    from source
 
 )
 
