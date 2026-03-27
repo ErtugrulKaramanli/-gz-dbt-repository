@@ -47,3 +47,32 @@ sources:
             description: "Logistics operation cost."
           - name: ship_cost
             description: "Total shipping cost."
+
+      # --- Reklam Kanalları (Yeni Eklenenler) ---
+
+      - name: adwords
+        identifier: raw_gz_adwords
+        description: "Google Ads campaign performance data."
+        columns: &ad_columns
+          - name: date_date
+          - name: paid_source
+          - name: campaign_key
+          - name: camPGN_name
+          - name: ads_cost
+          - name: impression
+          - name: click
+
+      - name: bing
+        identifier: raw_gz_bing
+        description: "Bing Ads campaign performance data."
+        columns: *ad_columns
+
+      - name: criteo
+        identifier: raw_gz_criteo
+        description: "Criteo retargeting campaign performance data."
+        columns: *ad_columns
+
+      - name: facebook
+        identifier: raw_gz_facebook
+        description: "Facebook (Meta) Ads campaign performance data."
+        columns: *ad_columns
