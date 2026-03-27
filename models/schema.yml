@@ -110,7 +110,7 @@ models:
           - not_null
           - accepted_values:
               arguments: # Hata buradaydı, bu satırı ekledik
-                values: ['adwords', 'bing', 'criteo', 'facebook']
+                values: ['Adwords', 'Bing', 'Criteo', 'Facebook']
   - name: int_campaigns_day
     description: "Reklam verilerinin günlük bazda (date_date) ve kampanya bazında (campaign_key) tekilleştirildiği özet tablo."
     columns:
@@ -148,4 +148,4 @@ models:
           - not_null
           - accepted_values:
              arguments: # Hata buradaydı, bu satırı ekledik
-              values: ['adwords', 'bing', 'criteo', 'facebook']
+              values: ['Adwords', 'Bing', 'Criteo', 'Facebook']
