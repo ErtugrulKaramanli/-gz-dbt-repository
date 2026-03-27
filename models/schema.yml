@@ -77,75 +77,74 @@ sources:
         columns: *ad_columns
 
 # --- Oluşturulan Modeller (Models) ---
-# DİKKAT: 'models' başlığı 'sources' ile aynı hizada olmalı!
 models:
   - name: int_campaigns
     description: "Tüm reklam platformlarından gelen verilerin birleştirildiği ara model."
     columns:
       - name: date_date
-        description: "Verinin ait olduğu tarih."
         tests:
           - not_null
       - name: campaign_key
-        description: "Kampanyanın benzersiz anahtarı."
         tests:
           - not_null
-      - name: campaign_name
-        description: "Kampanyanın adı."
       - name: ads_cost
-        description: "Reklam harcaması."
         tests:
           - not_null
       - name: impression
-        description: "Görüntülenme sayısı."
         tests:
           - not_null
       - name: click
-        description: "Tıklanma sayısı."
         tests:
           - not_null
       - name: paid_source
-        description: "Kaynak platform."
         tests:
           - not_null
           - accepted_values:
-              arguments: # Hata buradaydı, bu satırı ekledik
+              arguments:
                 values: ['Adwords', 'Bing', 'Criteo', 'Facebook']
+
   - name: int_campaigns_day
-    description: "Reklam verilerinin günlük bazda (date_date) ve kampanya bazında (campaign_key) tekilleştirildiği özet tablo."
+    description: "Reklam verilerinin günlük ve kampanya bazında tekilleştirildiği özet tablo."
     columns:
       - name: date_date
-        description: "Kaydın ait olduğu gün."
         tests:
           - not_null
-
       - name: campaign_key
-        description: "Kampanyanın benzersiz anahtarı."
         tests:
           - not_null
-
-      - name: campaign_name
-        description: "Kampanyanın adı."
-
       - name: ads_cost
-        description: "O güne ait toplam reklam harcaması."
         tests:
           - not_null
-
       - name: impression
-        description: "O güne ait toplam görüntülenme sayısı."
         tests:
           - not_null
-
       - name: click
-        description: "O güne ait toplam tıklanma sayısı."
         tests:
           - not_null
-
       - name: paid_source
-        description: "Reklamın kaynağı."
         tests:
           - not_null
           - accepted_values:
-             arguments: # Hata buradaydı, bu satırı ekledik
-              values: ['Adwords', 'Bing', 'Criteo', 'Facebook']
+              arguments:
+                values: ['Adwords', 'Bing', 'Criteo', 'Facebook']
+
+  - name: finance_campaigns_day
+    description: "Finansal veriler ile reklam harcamalarının birleştiği nihai tablo."
+    columns:
+      - name: date
+        description: "Raporun ait olduğu tarih."
+        tests:
+          - not_null
+          - unique
+      - name: ads_margin
+        tests:
+          - not_null
+      - name: operational_margin
+        tests:
+          - not_null
+      - name: ads_cost
+        tests:
+          - not_null
+      - name: revenue
+        tests:
+          - not_null
