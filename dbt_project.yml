@@ -27,6 +27,10 @@ models:
     intermediate:
       +materialized: view
 
-    # Mart klasörü altındaki modeller (finance_days.sql gibi) 'table' olarak oluşturulur
+    # Mart klasörü altındaki modeller 'table' olarak oluşturulur
     mart:
       +materialized: table
+      # Mart klasörünün altındaki finance klasörü için özel ayar:
+      # Bu ayar tabloyu "sizin_datasetiniz_finance" içine yazar
+      finance:
+        +schema: finance
