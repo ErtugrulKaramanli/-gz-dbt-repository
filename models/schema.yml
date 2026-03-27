@@ -96,11 +96,11 @@ models:
         description: "Reklam harcaması."
         tests:
           - not_null
-      - name: impressions
+      - name: impression
         description: "Görüntülenme sayısı."
         tests:
           - not_null
-      - name: clicks
+      - name: click
         description: "Tıklanma sayısı."
         tests:
           - not_null
@@ -132,12 +132,12 @@ models:
         tests:
           - not_null
 
-      - name: impressions
+      - name: impression
         description: "O güne ait toplam görüntülenme sayısı."
         tests:
           - not_null
 
-      - name: clicks
+      - name: click
         description: "O güne ait toplam tıklanma sayısı."
         tests:
           - not_null
