@@ -1,0 +1,49 @@
+version: 2
+
+sources:
+  - name: raw
+    dataset: gz_raw_data
+    description: "Main source for raw data hosted on BigQuery."
+    tables:
+      - name: products
+        identifier: raw_gz_product
+        description: "Table containing product information."
+        columns:
+          - name: products_id
+            description: "Unique identifier for each product."
+            tests:
+              - unique
+              - not_null
+          - name: purchSE_PRICE
+            description: "Purchase price of the product."
+
+      - name: sales
+        identifier: raw_gz_sales
+        description: "Table containing detailed sales transaction records."
+        columns:
+          - name: date_date
+            description: "Date when the transaction occurred."
+          - name: orders_id
+            description: "Unique identifier for the order."
+          - name: pdt_id
+            description: "Product identifier (matches products_id)."
+          - name: revenue
+            description: "Total revenue generated from the sale."
+          - name: quantity
+            description: "Quantity of products sold."
+
+      - name: ship
+        identifier: raw_gz_ship
+        description: "Table containing shipping and logistics cost details."
+        columns:
+          - name: orders_id
+            description: "Order identifier (matches sales table)."
+            tests:
+              - unique
+              - not_null
+          - name: shipping_fee
+            description: "Standard shipping fee."
+          - name: logCost
+            description: "Logistics operation cost."
+          - name: ship_cost
+            description: "Total shipping cost."
