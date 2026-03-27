@@ -48,8 +48,7 @@ sources:
           - name: ship_cost
             description: "Total shipping cost."
 
-      # --- Reklam Kanalları (Yeni Eklenenler) ---
-
+      # --- Reklam Kanalları (Raw Sources) ---
       - name: adwords
         identifier: raw_gz_adwords
         description: "Google Ads campaign performance data."
@@ -76,3 +75,77 @@ sources:
         identifier: raw_gz_facebook
         description: "Facebook (Meta) Ads campaign performance data."
         columns: *ad_columns
+
+# --- Oluşturulan Modeller (Models) ---
+# DİKKAT: 'models' başlığı 'sources' ile aynı hizada olmalı!
+models:
+  - name: int_campaigns
+    description: "Tüm reklam platformlarından gelen verilerin birleştirildiği ara model."
+    columns:
+      - name: date_date
+        description: "Verinin ait olduğu tarih."
+        tests:
+          - not_null
+      - name: campaign_key
+        description: "Kampanyanın benzersiz anahtarı."
+        tests:
+          - not_null
+      - name: campaign_name
+        description: "Kampanyanın adı."
+      - name: ads_cost
+        description: "Reklam harcaması."
+        tests:
+          - not_null
+      - name: impressions
+        description: "Görüntülenme sayısı."
+        tests:
+          - not_null
+      - name: clicks
+        description: "Tıklanma sayısı."
+        tests:
+          - not_null
+      - name: paid_source
+        description: "Kaynak platform."
+        tests:
+          - not_null
+          - accepted_values:
+              arguments: # Hata buradaydı, bu satırı ekledik
+                values: ['adwords', 'bing', 'criteo', 'facebook']
+  - name: int_campaigns_day
+    description: "Reklam verilerinin günlük bazda (date_date) ve kampanya bazında (campaign_key) tekilleştirildiği özet tablo."
+    columns:
+      - name: date_date
+        description: "Kaydın ait olduğu gün."
+        tests:
+          - not_null
+
+      - name: campaign_key
+        description: "Kampanyanın benzersiz anahtarı."
+        tests:
+          - not_null
+
+      - name: campaign_name
+        description: "Kampanyanın adı."
+
+      - name: ads_cost
+        description: "O güne ait toplam reklam harcaması."
+        tests:
+          - not_null
+
+      - name: impressions
+        description: "O güne ait toplam görüntülenme sayısı."
+        tests:
+          - not_null
+
+      - name: clicks
+        description: "O güne ait toplam tıklanma sayısı."
+        tests:
+          - not_null
+
+      - name: paid_source
+        description: "Reklamın kaynağı."
+        tests:
+          - not_null
+          - accepted_values:
+             arguments: # Hata buradaydı, bu satırı ekledik
+              values: ['adwords', 'bing', 'criteo', 'facebook']
